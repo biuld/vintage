@@ -1,17 +1,14 @@
 package com.github.biuld.controller;
 
-import com.github.biuld.dto.Params;
+import com.github.biuld.dto.params.Params;
 import com.github.biuld.model.Role;
 import com.github.biuld.service.RoleService;
 import com.github.biuld.util.Page;
 import com.github.biuld.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**

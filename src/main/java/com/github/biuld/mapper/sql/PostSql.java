@@ -1,6 +1,6 @@
 package com.github.biuld.mapper.sql;
 
-import com.github.biuld.dto.PostParams;
+import com.github.biuld.dto.params.PostParams;
 import com.github.biuld.util.Time;
 import org.apache.ibatis.jdbc.SQL;
 import org.springframework.util.StringUtils;

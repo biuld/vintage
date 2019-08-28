@@ -2,7 +2,7 @@ package com.github.biuld.service;
 
 import com.github.biuld.config.Constants;
 import com.github.biuld.config.exception.BusinessException;
-import com.github.biuld.dto.Params;
+import com.github.biuld.dto.params.Params;
 import com.github.biuld.mapper.RoleMapper;
 import com.github.biuld.model.Role;
 import com.github.biuld.service.bi.UserRoleService;

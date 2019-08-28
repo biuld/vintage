@@ -1,6 +1,6 @@
 package com.github.biuld.controller;
 
-import com.github.biuld.dto.PostParams;
+import com.github.biuld.dto.params.PostParams;
 import com.github.biuld.model.Post;
 import com.github.biuld.model.User;
 import com.github.biuld.service.PostService;

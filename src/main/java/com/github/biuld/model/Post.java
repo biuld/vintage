@@ -51,5 +51,4 @@ public class Post {
     @Transient
     @ApiModelProperty("标签列表")
     private List<String> tagDescList;
-
 }

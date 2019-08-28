@@ -1,4 +1,4 @@
-package com.github.biuld.dto;
+package com.github.biuld.dto.params;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

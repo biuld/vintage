@@ -1,4 +1,4 @@
-package com.github.biuld.dto;
+package com.github.biuld.dto.params;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

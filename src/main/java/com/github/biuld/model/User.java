@@ -36,8 +36,9 @@ public class User {
     @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", message = "邮箱格式错误")
     private String email;
 
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty("0-false , 1-true")
     private Integer verified = 0;
 
+    @Transient
     private List<String> roleNameList;
 }

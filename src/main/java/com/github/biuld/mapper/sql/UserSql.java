@@ -1,6 +1,6 @@
 package com.github.biuld.mapper.sql;
 
-import com.github.biuld.dto.UserParams;
+import com.github.biuld.dto.params.UserParams;
 import org.apache.ibatis.jdbc.SQL;
 
 public class UserSql {

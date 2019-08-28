@@ -1,8 +1,8 @@
 package com.github.biuld.service;
 
 import com.github.biuld.config.Constants;
-import com.github.biuld.dto.UserEdit;
-import com.github.biuld.dto.UserParams;
+import com.github.biuld.config.exception.BusinessException;
+import com.github.biuld.dto.params.UserParams;
 import com.github.biuld.dto.view.UserView;
 import com.github.biuld.mapper.CommentMapper;
 import com.github.biuld.mapper.PostMapper;
@@ -11,6 +11,7 @@ import com.github.biuld.model.Role;
 import com.github.biuld.model.User;
 import com.github.biuld.service.bi.UserRoleService;
 import com.github.biuld.util.Page;
+import com.github.biuld.util.Result;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -37,15 +38,26 @@ public class UserService {
 
     private UserRoleService userRoleService;
 
-    public User findUserByName(String username) {
-        User tester = new User();
-        tester.setUsername(username);
-        return userMapper.selectOne(tester);
+    public User findUserByNameOrEmail(String username, String email) {
+        return Optional.ofNullable(this.findUserByName(username))
+                .orElse(this.findUserByEmail(email));
     }
 
     public User findUserByCredenceAndPassword(String credence, String password) {
-        return Optional.of(this.findUserByNameAndPwd(credence, password))
+        return Optional.ofNullable(this.findUserByNameAndPwd(credence, password))
                 .orElse(this.findUserByEmailAndPwd(credence, password));
+    }
+
+    private User findUserByEmail(String email) {
+        User user = new User();
+        user.setEmail(email);
+        return userMapper.selectOne(user);
+    }
+
+    private User findUserByName(String username) {
+        User user = new User();
+        user.setUsername(username);
+        return userMapper.selectOne(user);
     }
 
     private User findUserByEmailAndPwd(String email, String password) {
@@ -72,10 +84,12 @@ public class UserService {
         return add(user, List.of(Constants.ROLE_DEFAULT));
     }
 
-    public int update(UserEdit userEdit) {
-        User user = new User();
-        BeanUtils.copyProperties(userEdit, user);
+    public int update(User user) {
         return update(user, List.of(Constants.ROLE_DEFAULT));
+    }
+
+    public int changePassword(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 
     @Transactional
@@ -95,8 +109,15 @@ public class UserService {
     @Transactional
     public int update(User user, List<String> roleNameList) {
 
-        if (user.getPassword() != null)
-            user.setPassword(Sha512DigestUtils.shaHex(user.getPassword()));
+        Optional.ofNullable(user.getEmail())
+                .map(this::findUserByEmail)
+                .ifPresent(foundUser -> {
+                    if (!foundUser.getId().equals(user.getId()))
+                        throw new BusinessException(Result.ErrCode.USER_EXISTS);
+
+                    if (!foundUser.getEmail().equals(user.getEmail()))
+                        user.setVerified(0);
+                });
 
         userRoleService.deleteAllByUserId(user.getId());
 

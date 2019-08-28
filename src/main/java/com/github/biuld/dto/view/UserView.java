@@ -7,11 +7,27 @@ import com.github.biuld.model.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class UserView extends User {
+public class UserView  {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String username;
+
+    private String password;
+
+    private String avatar;
+
+    private String email;
+
+    private Integer verified;
 
     private List<Role> roleList;
 

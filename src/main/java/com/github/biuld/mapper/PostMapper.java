@@ -1,6 +1,6 @@
 package com.github.biuld.mapper;
 
-import com.github.biuld.dto.PostParams;
+import com.github.biuld.dto.params.PostParams;
 import com.github.biuld.dto.PostTitleIdPair;
 import com.github.biuld.mapper.sql.PostSql;
 import com.github.biuld.model.Post;

@@ -1,6 +1,6 @@
 package com.github.biuld.mapper;
 
-import com.github.biuld.dto.UserParams;
+import com.github.biuld.dto.params.UserParams;
 import com.github.biuld.mapper.sql.UserSql;
 import com.github.biuld.model.User;
 import com.github.biuld.util.BaseMapper;
