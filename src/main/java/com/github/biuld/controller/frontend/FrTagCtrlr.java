@@ -1,4 +1,4 @@
-package com.github.biuld.controller;
+package com.github.biuld.controller.frontend;
 
 import com.github.biuld.model.Tag;
 import com.github.biuld.model.User;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "文章标签管理")
 @RestController
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
-public class TagController {
+public class FrTagCtrlr {
 
     private TagService tagService;
 
@@ -38,17 +38,5 @@ public class TagController {
         User user = (User) request.getAttribute("user");
 
         return Result.success("ok", tagService.delete(tagId, user));
-    }
-
-    @DeleteMapping("/backstage/tag")
-    @ApiOperation("删除tag")
-    public Result delete(@RequestParam Integer tagId) {
-        return Result.success("ok", tagService.delete(tagId));
-    }
-
-    @PutMapping("/backstage/tag")
-    @ApiOperation("修改tag")
-    public Result update(@RequestParam Integer tagId, @RequestParam String tagDesc) {
-        return Result.success("ok", tagService.update(tagId, tagDesc));
     }
 }

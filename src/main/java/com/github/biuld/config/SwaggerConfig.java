@@ -23,13 +23,26 @@ import java.util.List;
 public class SwaggerConfig {
 
     @Bean
-    public Docket api() {
+    public Docket bkApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.github.biuld.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.github.biuld.controller.backstage"))
                 .paths(PathSelectors.any())
                 .build()
+                .groupName("后台管理")
+                .securitySchemes(Lists.newArrayList(apiKey()));
+    }
+
+    @Bean
+    public Docket frApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.github.biuld.controller.frontend"))
+                .paths(PathSelectors.any())
+                .build()
+                .groupName("前台管理")
                 .securitySchemes(Lists.newArrayList(apiKey()));
     }
 

@@ -1,4 +1,4 @@
-package com.github.biuld.controller;
+package com.github.biuld.controller.frontend;
 
 import com.github.biuld.dto.view.CommentView;
 import com.github.biuld.model.Comment;
@@ -21,7 +21,7 @@ import java.util.Date;
 @Api(tags = "评论管理")
 @RestController
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
-public class CommentController {
+public class FrCommentCtrlr {
 
     private CommentService commentService;
 
@@ -80,11 +80,5 @@ public class CommentController {
             return Result.error(Result.ErrCode.INPUT_ERROR);
 
         return Result.success("ok", result);
-    }
-
-    @ApiOperation("删除评论")
-    @DeleteMapping("/backstage/comment")
-    public Result delete(@RequestParam Integer commentId) {
-        return Result.success("ok", commentService.delete(commentId));
     }
 }

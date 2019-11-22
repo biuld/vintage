@@ -1,4 +1,4 @@
-package com.github.biuld.controller;
+package com.github.biuld.controller.backstage;
 
 import com.github.biuld.dto.params.Params;
 import com.github.biuld.model.Role;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/backstage")
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
-public class RoleController {
+public class BkRoleCtrlr {
 
     private RoleService roleService;
 
